@@ -80,5 +80,16 @@
                 cursor: pointer;
             }
         }
+
+        .error{
+            background-color : #FBCDD2;
+            border: 1px solid #F7C0C4;
+            box-sizing: border-box;
+            color : red;
+            padding-top : 0.2rem;
+            padding-bottom : 0.2rem;
+            padding-left : 0.2rem;
+            font-size : 0.8rem;
+        }
     }
 }
