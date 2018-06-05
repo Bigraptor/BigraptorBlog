@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
 const Account = require("../../db/account/account.js");
 
 router.post("/join", (req, res) => {
@@ -66,5 +67,36 @@ router.post("/join", (req, res) => {
         };
     };
 });
+
+router.post("/login", (req, res) => {
+    Account.findOne({id : req.body.id}, (err, account) => {
+        if(err) throw err;
+        if(!account){
+            return res.status(401).json({
+                error : "ID is not exist",
+                code : 1
+            });
+        } else {
+            if(!account.validateHash(req.body.pw)){
+                return res.status(401).json({
+                    error : "PW is Wrong",
+                    code : 2
+                });
+            } else {
+                jwt.sign({
+                    _id : account._id,
+                    id : user.id,
+                    admin : user.admin
+                },secret,{
+                    expiresIn: '7d',
+                    issuer: 'bigraptor.com',
+                    subject: 'userInfo'
+                },(err, token) => {
+                    if(err) throw err;
+                })
+            }
+        }
+    })
+})
 
 module.exports = router;

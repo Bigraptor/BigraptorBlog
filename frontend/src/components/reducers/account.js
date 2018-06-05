@@ -5,6 +5,10 @@ const initialState = {
     join : {
         status : "INIT",
         error : -1
+    },
+    loign : {
+        status : "INIT",
+        error : -1
     }
 };
 
@@ -36,6 +40,27 @@ export default function account(state = initialState, action){
             return update(state, {
                 join : {
                     error : {$set: -1}
+                }
+            });
+
+        case (types.LOGIN) :
+            return update(state, {
+                login : {
+                    status : {$set: "WAIT"}
+                }
+            });
+
+         case (types.LOGIN_SUCCESS) :
+            return update(state, {
+                login : {
+                    status : {$set: "SUCCESS"}
+                }
+            });
+
+        case (types.LOGIN_FAILED) :
+            return update(state, {
+                login : {
+                    status : {$set: "FAILED"}
                 }
             });
 

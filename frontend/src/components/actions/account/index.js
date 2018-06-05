@@ -17,6 +17,22 @@ export function joinRequest(id, pw, nickname){
     }
 }
 
+export function loginRequest(id, pw){
+    return (dispatch) => {
+        dispatch(login());
+
+        return axios.post("/account/login", {id, pw}).then(
+            (response) => {
+                dispatch(loginSuccess());
+            }
+        ).catch(
+            (error) => {
+                dispatch(loginFailed());
+            }
+        );
+    };
+};
+
 export function join(){
     return{
         type : types.JOIN
@@ -39,5 +55,23 @@ export function joinFailed(error){
 export function joinReset(){
     return {
         type : types.JOIN_RESET
+    };
+};
+
+export function login(){
+    return {
+        type : types.LOGIN
+    };
+};
+
+export function loginSuccess(){
+    return {
+        type : types.LOGIN_SUCCESS
+    };
+};
+
+export function loginFailed(){
+    return{
+        type : types.LOGIN_Failed
     };
 };

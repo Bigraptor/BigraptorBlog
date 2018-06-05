@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styles from "./LoginModal.scss";
 import classNames from "classnames/bind";
 import { hideLoginModal } from "../../actions/showLogin";
-import { joinRequest, joinReset } from "../../actions/account";
+import { joinRequest, joinReset, LoginRequest } from "../../actions/account";
 import { connect } from "react-redux";
 
 const cx = classNames.bind(styles);
@@ -22,6 +22,7 @@ class LoginModal extends Component{
         this._showjoin = this._showjoin.bind(this);
         this._change = this._change.bind(this);
         this._join = this._join.bind(this);
+        this._login = this._login.bind(this);
     };
 
     _hidelogin(){
@@ -51,6 +52,16 @@ class LoginModal extends Component{
                         nickname : "",
                         showjoin : false
                     });
+                }
+            }
+        );
+    };
+
+    _login(){
+        this.props.loginrequest(this.state.id, this.state.pw).then(
+            () => {
+                if(this.props.loginstatus.status === "SUCCESS"){
+                    console.log("성공")
                 }
             }
         );
@@ -92,7 +103,7 @@ class LoginModal extends Component{
                 <div className = {cx("arti")}>
                     <input type = "text" name = "id" placeholder = "아이디" value = {this.state.id} onChange = {this._change} />
                     <input type = "password" name = "pw" placeholder = "비밀번호" value = {this.state.pw} onChange = {this._change} />
-                    <div className = {cx("login-btn")}>
+                    <div className = {cx("login-btn")} onClick = {this._login}>
                         로그인
                     </div>
                     <div className = {cx("join-wrapper")}>
@@ -143,7 +154,8 @@ class LoginModal extends Component{
 const mapStateToProps = (state) => {
     return {
         hidelogin : state.showlogin.show,
-        joinstatus : state.account.join
+        joinstatus : state.account.join,
+        loginstatus : state.account.login
     };
 };
 
@@ -157,6 +169,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         joinreset : () => {
             return dispatch(joinReset());
+        },
+        loginrequest : (id, pw) => {
+            return dispatch(loginRequest(id, pw));
         }
     };
 };
