@@ -33,6 +33,22 @@ export function loginRequest(id, pw){
     };
 };
 
+export function tokenCheckRequest(){
+    return (dispatch) => {
+        dispatch(tokenCheck());
+
+        return axios.get("/account/tokencheck").then(
+            (response) => {
+                dispatch(tokenCheckSuccess());
+            }
+        ).catch(
+            (error) => {
+                dispatch(tokenCheckFailed());
+            }
+        );
+    };
+};
+
 export function join(){
     return{
         type : types.JOIN
@@ -64,7 +80,7 @@ export function login(){
     };
 };
 
-export function loginSuccess(){
+export function loginSuccess(token){
     return {
         type : types.LOGIN_SUCCESS
     };
@@ -72,6 +88,24 @@ export function loginSuccess(){
 
 export function loginFailed(){
     return{
-        type : types.LOGIN_Failed
+        type : types.LOGIN_FAILED
+    };
+};
+
+export function tokenCheck(){
+    return {
+        type : types.TOKEN_CHECK
+    };
+};
+
+export function tokenCheckSuccess(){
+    return {
+        type : types.TOKEN_CHECK_SUCCESS
+    };
+};
+
+export function tokenCheckFailed(){
+    return {
+        type : types.TOKEN_CHECK_FAILED
     };
 };

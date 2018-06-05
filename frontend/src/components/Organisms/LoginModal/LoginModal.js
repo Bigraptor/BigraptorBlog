@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styles from "./LoginModal.scss";
 import classNames from "classnames/bind";
 import { hideLoginModal } from "../../actions/showLogin";
-import { joinRequest, joinReset, LoginRequest } from "../../actions/account";
+import { joinRequest, joinReset, loginRequest } from "../../actions/account";
 import { connect } from "react-redux";
 
 const cx = classNames.bind(styles);
@@ -61,7 +61,7 @@ class LoginModal extends Component{
         this.props.loginrequest(this.state.id, this.state.pw).then(
             () => {
                 if(this.props.loginstatus.status === "SUCCESS"){
-                    console.log("성공")
+                    console.log("dd")
                 }
             }
         );

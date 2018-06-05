@@ -6,8 +6,13 @@ const initialState = {
         status : "INIT",
         error : -1
     },
-    loign : {
+    login : {
         status : "INIT",
+        error : -1
+    },
+    token : {
+        isLoggedin : false,
+        admin : false,
         error : -1
     }
 };
@@ -61,6 +66,27 @@ export default function account(state = initialState, action){
             return update(state, {
                 login : {
                     status : {$set: "FAILED"}
+                }
+            });
+
+        // case (types.TOKEN_CHECK) :
+        //     return update(state, {
+        //         token : {
+        //             isLoggedin : {$set: true}
+        //         }
+        //     });
+
+        case (types.TOKEN_CHECK_SUCCESS) :
+            return update(state, {
+                token : {
+                    isLoggedin : {$set: true}
+                }
+            });
+
+        case (types.TOKEN_CHECK_FAILED) :
+            return update(state, {
+                token : {
+                    isLoggedin : {$set: false}
                 }
             });
 

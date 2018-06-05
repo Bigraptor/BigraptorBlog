@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const Account = require("../../db/account/account.js");
+const tokenMiddleware = require("../../middlewares/token");
 
 router.post("/join", (req, res) => {
     let idRegex = /^[a-z0-9]+$/;
@@ -69,6 +70,8 @@ router.post("/join", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
+    const secret = req.app.get('jwt-secret');
+
     Account.findOne({id : req.body.id}, (err, account) => {
         if(err) throw err;
         if(!account){
@@ -83,20 +86,34 @@ router.post("/login", (req, res) => {
                     code : 2
                 });
             } else {
-                jwt.sign({
-                    _id : account._id,
-                    id : user.id,
-                    admin : user.admin
-                },secret,{
-                    expiresIn: '7d',
-                    issuer: 'bigraptor.com',
-                    subject: 'userInfo'
-                },(err, token) => {
-                    if(err) throw err;
-                })
+                let token = jwt.sign({
+                        _id : account._id,
+                        id : account.id,
+                        admin : account.admin
+                    },secret,{
+                        expiresIn: '1h',
+                        issuer: 'bigraptor.com',
+                        subject: 'userInfo'
+                });
+
+                res.cookie("user", token);
+
+                res.json({
+                    message : "Login Success",
+                    token
+                });
+            
             }
         }
     })
-})
+});
+
+router.use("/tokencheck", tokenMiddleware)
+router.get("/tokencheck", (req, res) => {
+    res.json({
+        success : true,
+        info : req.decoded
+    });
+});
 
 module.exports = router;

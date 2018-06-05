@@ -3,6 +3,7 @@ import styles from "./Aside.scss";
 import classNames from "classnames/bind";
 import Logo from "../../Parts/Logo/Logo.js";
 import { showLoginModal } from "../../actions/showLogin";
+import { tokenCheckRequest } from "../../actions/account";
 import { connect } from "react-redux";
 
 const cx = classNames.bind(styles);
@@ -18,6 +19,10 @@ class Aside extends Component{
         this._showmenu = this._showmenu.bind(this);
         this._hidemenu = this._hidemenu.bind(this);
         this._showlogin = this._showlogin.bind(this);
+    };
+
+    componentDidMount(){
+        this.props.tokencheck();
     };
 
     _showmenu(){
@@ -42,6 +47,12 @@ class Aside extends Component{
                 로그인
             </div>
         );
+
+        const dologin = (
+            <div>
+                환영합니다
+            </div>
+        )
 
         const moremenu = (
             <div className = {cx("more-wrapper")}>
@@ -83,7 +94,7 @@ class Aside extends Component{
                     My DevelopStory
                 </div>
                 <div className = {cx("profile")}>
-                    {notlogin}
+                    {this.props.token.isLoggedin ? dologin : notlogin}
                 </div>
             </div>
         );
@@ -100,7 +111,8 @@ class Aside extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        showlogin : state.showlogin.show
+        showlogin : state.showlogin.show,
+        token : state.account.token
     };
 };
 
@@ -108,6 +120,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         showloginmodal : () => {
             return dispatch(showLoginModal());
+        },
+        tokencheck : () => {
+            return dispatch(tokenCheckRequest());
         }
     };
 };
