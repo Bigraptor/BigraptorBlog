@@ -2,8 +2,11 @@ import React, {Component} from "react";
 import styles from "./Aside.scss";
 import classNames from "classnames/bind";
 import Logo from "../../Parts/Logo/Logo.js";
+import profileLogo from "../../../img/raptor.png";
+import profileLogo2 from "../../../img/user.png";
 import { showLoginModal } from "../../actions/showLogin";
-import { tokenCheckRequest } from "../../actions/account";
+import { tokenCheckRequest, logoutRequest } from "../../actions/account";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 const cx = classNames.bind(styles);
@@ -19,10 +22,11 @@ class Aside extends Component{
         this._showmenu = this._showmenu.bind(this);
         this._hidemenu = this._hidemenu.bind(this);
         this._showlogin = this._showlogin.bind(this);
+        this._logout = this._logout.bind(this);
     };
 
     componentDidMount(){
-        this.props.tokencheck();
+        this.props.tokencheck(document.cookie);
     };
 
     _showmenu(){
@@ -40,6 +44,11 @@ class Aside extends Component{
         this.props.showloginmodal();
     };
 
+    _logout(){
+        this.props.logoutrequest();
+        window.location.reload();
+    };
+
     render(){
 
         const notlogin = (
@@ -50,31 +59,61 @@ class Aside extends Component{
 
         const dologin = (
             <div>
-                환영합니다
+                <div className = {cx("profile-image")}>
+                    <img src = {this.props.user.admin ? profileLogo : profileLogo2} alt = "raptor-logo"/>
+                </div>
+                <div>
+                    {this.props.user.nickname}님
+                </div>
+                <div className = {cx("logout-wrapper")}>
+                    <div className = {cx("logout-btn")} onClick = {this._logout}>
+                        로그아웃
+                    </div>
+                </div>
             </div>
         )
 
         const moremenu = (
             <div className = {cx("more-wrapper")}>
-                <div className = {cx("more")}>
-                    <i className = "fas fa-times" onClick = {this._hidemenu}/>
+                <div>
+                    <div className = {cx("more")}>
+                        <i className = "fas fa-times" onClick = {this._hidemenu}/>
+                    </div>
+                    <div className = {cx("section-wrapper")}>
+                        <div className = {cx("section")}>
+                            <h4>Tech</h4>
+                            <ul>
+                                <Link to = "/React" className = {cx("link")}><li>- React</li></Link>
+                                <Link to = "/Nodejs" className = {cx("link")}><li>- Node.js</li></Link>
+                                <Link to = "/Javascript" className = {cx("link")}><li>- JavaScript</li></Link>
+                                <Link to = "/jQuery" className = {cx("link")}><li>- jQuery</li></Link>
+                            </ul>
+                        </div>
+                        <div className = {cx("section")}>
+                            <h4>Dev</h4>
+                            <ul>
+                                <Link to = "/Diary" className = {cx("link")}><li>- diary</li></Link>
+                            </ul>
+                        </div>
+                        <div className = {cx("section")}>
+                            <h4>Life</h4>
+                            <ul>
+                                <Link to = "/Chat" className = {cx("link")}><li>- chat</li></Link>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className = {cx("board")}>
+                        <span>
+                            게시판
+                        </span>
+                    </div>
                 </div>
-                <div className = {cx("section-wrapper")}>
-                    <div className = {cx("section")}>
-                        <h4>Tech</h4>
-                        <ul>
-                            <li>- React</li>
-                            <li>- Node.js</li>
-                            <li>- JavaScript</li>
-                            <li>- jQuery</li>
-                        </ul>
-                    </div>
-                    <div className = {cx("section")}>
-                        <h4>Dev</h4>
-                        <ul>
-                            <li>- diary</li>
-                        </ul>
-                    </div>
+                <div className = {cx("footer")}>
+                    <Link to = "/write" className = {cx("link-edit")} >
+                        <div>
+                            <i className = "fas fa-edit"/>
+                        </div>
+                    </Link>
                 </div>
             </div>
         );
@@ -112,7 +151,8 @@ class Aside extends Component{
 const mapStateToProps = (state) => {
     return {
         showlogin : state.showlogin.show,
-        token : state.account.token
+        token : state.account.token,
+        user : state.account.login
     };
 };
 
@@ -121,8 +161,11 @@ const mapDispatchToProps = (dispatch) => {
         showloginmodal : () => {
             return dispatch(showLoginModal());
         },
-        tokencheck : () => {
-            return dispatch(tokenCheckRequest());
+        tokencheck : (cookie) => {
+            return dispatch(tokenCheckRequest(cookie));
+        },
+        logoutrequest : () => {
+            return dispatch(logoutRequest());
         }
     };
 };

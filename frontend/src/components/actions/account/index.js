@@ -23,23 +23,23 @@ export function loginRequest(id, pw){
 
         return axios.post("/account/login", {id, pw}).then(
             (response) => {
-                dispatch(loginSuccess());
+                dispatch(loginSuccess(response.data.account));
             }
         ).catch(
             (error) => {
-                dispatch(loginFailed());
+                dispatch(loginFailed(error.response.data.code));
             }
         );
     };
 };
 
-export function tokenCheckRequest(){
+export function tokenCheckRequest(cookie){
     return (dispatch) => {
         dispatch(tokenCheck());
 
-        return axios.get("/account/tokencheck").then(
+        return axios.get("/account/tokencheck", {cookie}).then(
             (response) => {
-                dispatch(tokenCheckSuccess());
+                dispatch(tokenCheckSuccess(response.data.info));
             }
         ).catch(
             (error) => {
@@ -48,6 +48,12 @@ export function tokenCheckRequest(){
         );
     };
 };
+
+export function logoutRequest(){
+    return (dispatch) => {
+        return axios.get("/account/logout");
+    }
+}
 
 export function join(){
     return{
@@ -80,15 +86,17 @@ export function login(){
     };
 };
 
-export function loginSuccess(token){
+export function loginSuccess(account){
     return {
-        type : types.LOGIN_SUCCESS
+        type : types.LOGIN_SUCCESS,
+        account
     };
 };
 
-export function loginFailed(){
+export function loginFailed(error){
     return{
-        type : types.LOGIN_FAILED
+        type : types.LOGIN_FAILED,
+        error
     };
 };
 
@@ -98,14 +106,27 @@ export function tokenCheck(){
     };
 };
 
-export function tokenCheckSuccess(){
+export function tokenCheckSuccess(info){
     return {
-        type : types.TOKEN_CHECK_SUCCESS
+        type : types.TOKEN_CHECK_SUCCESS,
+        info
     };
 };
 
 export function tokenCheckFailed(){
     return {
         type : types.TOKEN_CHECK_FAILED
+    };
+};
+
+export function loginReset(){
+    return{
+        type : types.LOGIN_RESET
+    };
+};
+
+export function logout(){
+    return{
+        type : types.LOGOUT
     };
 };

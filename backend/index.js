@@ -5,13 +5,17 @@ const bodyparser = require("body-parser");
 const morgan = require("morgan");
 const config = require("./config.js");
 const account = require("./routes/account");
+const cookieParser = require("cookie-parser");
+const post = require("./routes/Post");
 
+app.use(cookieParser());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended : true}));
 app.use(morgan("dev"));
 app.set('jwt-secret', config.secret)
 
 app.use("/account", account);
+app.use("/post", post);
 
 /////////////////////////////////////////////////////
 

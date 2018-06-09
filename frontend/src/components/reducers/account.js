@@ -8,11 +8,12 @@ const initialState = {
     },
     login : {
         status : "INIT",
-        error : -1
+        error : -1,
+        nickname: "",
+        admin : false
     },
     token : {
         isLoggedin : false,
-        admin : false,
         error : -1
     }
 };
@@ -58,28 +59,38 @@ export default function account(state = initialState, action){
          case (types.LOGIN_SUCCESS) :
             return update(state, {
                 login : {
-                    status : {$set: "SUCCESS"}
+                    status : {$set: "SUCCESS"},
+                    nickname : {$set: action.account.nickname},
+                    admin : {$set: action.account.admin}
+                },
+                token : {
+                    isLoggedin : {$set: true}
                 }
             });
 
         case (types.LOGIN_FAILED) :
             return update(state, {
                 login : {
-                    status : {$set: "FAILED"}
+                    status : {$set: "FAILED"},
+                    error : {$set: action.error}
                 }
             });
 
-        // case (types.TOKEN_CHECK) :
-        //     return update(state, {
-        //         token : {
-        //             isLoggedin : {$set: true}
-        //         }
-        //     });
+        case (types.LOGIN_RESET) :
+            return update(state, {
+                login : {
+                    error : {$set: -1}
+                }
+            });
 
         case (types.TOKEN_CHECK_SUCCESS) :
             return update(state, {
+                login : {
+                    nickname : {$set: action.info.nickname},
+                    admin : {$set: action.info.admin}
+                },
                 token : {
-                    isLoggedin : {$set: true}
+                    isLoggedin : {$set : true}
                 }
             });
 

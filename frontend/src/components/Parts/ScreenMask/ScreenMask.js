@@ -5,10 +5,12 @@ import LoginModal from "../../Organisms/LoginModal/LoginModal.js";
 
 const cx = classNames.bind(styles);
 
-export const ScreenMask = () => {
+const ScreenMask = () => {
     return(
         <div className = {cx("screen-wrapper")}>
             <LoginModal />
         </div>
     )
 };
+
+export default ScreenMask;

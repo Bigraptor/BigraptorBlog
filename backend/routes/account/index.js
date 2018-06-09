@@ -88,18 +88,22 @@ router.post("/login", (req, res) => {
             } else {
                 let token = jwt.sign({
                         _id : account._id,
-                        id : account.id,
+                        nickname : account.nickname,
                         admin : account.admin
                     },secret,{
-                        expiresIn: '1h',
+                        expiresIn: '7d',
                         issuer: 'bigraptor.com',
                         subject: 'userInfo'
                 });
 
-                res.cookie("user", token);
+                res.cookie("user", token, {
+                    httpOnly : true,
+                    maxAge : 1000*60*60*24*7
+                });
 
                 res.json({
                     message : "Login Success",
+                    account,
                     token
                 });
             
@@ -113,6 +117,17 @@ router.get("/tokencheck", (req, res) => {
     res.json({
         success : true,
         info : req.decoded
+    });
+});
+
+router.get("/logout", (req, res) => {
+    res.cookie("user", null, {
+        maxAge : 0,
+        httpOnly : true
+    });
+
+    res.json({
+        success : true
     });
 });
 

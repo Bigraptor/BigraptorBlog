@@ -11,7 +11,8 @@
 
     &.responsive{
         transition : all 0.3s ease-in;
-        width : 33%;
+        width : 30%;
+        z-index: 2;
     }
 
     .menu{
@@ -41,8 +42,17 @@
         justify-content: center;
         box-sizing: border-box;
 
-        .login-btn{
+        img{
+            border-radius : 100%;
+            background-color : white;
+            margin-bottom : 1rem;
+            width : 90px;
+            height: 80px;
+        }
+
+        .login-btn, .logout-btn{
             border: 1px solid white;
+            text-align: center;
             padding-top : 0.5rem;
             padding-bottom : 0.5rem;
             padding-left : 0.6rem;
@@ -56,11 +66,19 @@
                 color : black;
             }
         }
+
+        .logout-wrapper{
+            margin-top : 2rem;
+        }
     }
     
     .more-wrapper{
         margin-top : 2rem;
         margin-right : 2rem;
+        height : 93vh;
+        display : flex;
+        flex-direction: column;
+        justify-content: space-between;
 
         .more{
             color : white;
@@ -76,14 +94,47 @@
             display : flex;
             flex-wrap : wrap;
             .section{
-                border : 1px solid red;
-                width : 45%;
+                margin-left: 3rem;
+                width : 40%;
                 ul{
                     list-style: none;
-                    color : #969090;
+                    li{
+                        cursor: pointer;
+                        &:hover{
+                            color : white;
+                        }
+                    }
                 }
             }
         }
-    }
 
+        .board{
+            font-weight : 600;
+            margin-top : 2rem;
+
+            span{
+                margin-left : 3rem;
+                color : white;
+                cursor: pointer;
+            }
+        }
+
+        .footer{
+            text-align: center;
+            .link-edit{
+                color : white;
+                div{
+                    font-size : 1.5rem;
+                    i{
+                        cursor : pointer;
+                    }
+                }
+            }  
+        }
+    }
+}
+
+.link {
+    color : #969090;
+    text-decoration: none;
 }

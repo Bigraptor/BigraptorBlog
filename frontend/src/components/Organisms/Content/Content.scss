@@ -2,14 +2,22 @@
 // $breakpoints: (small: 376px, medium: 768px, large: 1024px, huge: 1200px);
 
 .wrapper{
-    border: 1px solid red;
-    width : 1200px;
-    margin : 0 auto;
+    display :flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding-top : 3rem;
+    padding-bottom : 3rem;
 
-    @include media("<1600px"){
-        width : 700px;
-    }
-    @include media("<1000px"){
-        width : 400px;
+    .content{
+        width : 800px;
+        margin : 0 auto;
+    
+        @include media("<1610px"){
+            width : 700px;
+        }
+        @include media("<1000px"){
+            width : 400px;
+        }
     }
 }

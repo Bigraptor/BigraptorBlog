@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styles from "./LoginModal.scss";
 import classNames from "classnames/bind";
 import { hideLoginModal } from "../../actions/showLogin";
-import { joinRequest, joinReset, loginRequest } from "../../actions/account";
+import { joinRequest, joinReset, loginRequest, loginReset } from "../../actions/account";
 import { connect } from "react-redux";
 
 const cx = classNames.bind(styles);
@@ -28,6 +28,7 @@ class LoginModal extends Component{
     _hidelogin(){
         this.props.hideloginmodal();
         this.props.joinreset();
+        this.props.loginreset();
     };
 
     _showjoin(){
@@ -61,13 +62,24 @@ class LoginModal extends Component{
         this.props.loginrequest(this.state.id, this.state.pw).then(
             () => {
                 if(this.props.loginstatus.status === "SUCCESS"){
-                    console.log("dd")
+                    this._hidelogin();
                 }
             }
         );
     };
 
     render(){
+        const loginerror1 = (
+            <div className = {cx("error")}>
+                아이디가 존재하지 않습니다.
+            </div>
+        );
+        
+        const loginerror2 = (
+            <div className = {cx("error")}>
+                비밀번호가 틀렸습니다.
+            </div>
+        );
 
         const error1 = (
             <div className = {cx("error")}>
@@ -102,7 +114,9 @@ class LoginModal extends Component{
                 </div>
                 <div className = {cx("arti")}>
                     <input type = "text" name = "id" placeholder = "아이디" value = {this.state.id} onChange = {this._change} />
+                        {this.props.loginstatus.error === 1 ? loginerror1 : ""}
                     <input type = "password" name = "pw" placeholder = "비밀번호" value = {this.state.pw} onChange = {this._change} />
+                        {this.props.loginstatus.error === 2 ? loginerror2 : ""}
                     <div className = {cx("login-btn")} onClick = {this._login}>
                         로그인
                     </div>
@@ -172,6 +186,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         loginrequest : (id, pw) => {
             return dispatch(loginRequest(id, pw));
+        },
+        loginreset : () => {
+            return dispatch(loginReset());
         }
     };
 };
