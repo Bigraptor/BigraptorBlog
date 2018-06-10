@@ -83,22 +83,22 @@ class Aside extends Component{
                         <div className = {cx("section")}>
                             <h4>Tech</h4>
                             <ul>
-                                <Link to = "/React" className = {cx("link")}><li>- React</li></Link>
-                                <Link to = "/Nodejs" className = {cx("link")}><li>- Node.js</li></Link>
-                                <Link to = "/Javascript" className = {cx("link")}><li>- JavaScript</li></Link>
-                                <Link to = "/jQuery" className = {cx("link")}><li>- jQuery</li></Link>
+                                <Link to = "/category/react" className = {cx("link")}><li>- React</li></Link>
+                                <Link to = "/category/nodejs" className = {cx("link")}><li>- Node.js</li></Link>
+                                <Link to = "/category/javascript" className = {cx("link")}><li>- JavaScript</li></Link>
+                                <Link to = "/category/jQuery" className = {cx("link")}><li>- jQuery</li></Link>
                             </ul>
                         </div>
                         <div className = {cx("section")}>
                             <h4>Dev</h4>
                             <ul>
-                                <Link to = "/Diary" className = {cx("link")}><li>- diary</li></Link>
+                                <Link to = "/category/diary" className = {cx("link")}><li>- diary</li></Link>
                             </ul>
                         </div>
                         <div className = {cx("section")}>
                             <h4>Life</h4>
                             <ul>
-                                <Link to = "/Chat" className = {cx("link")}><li>- chat</li></Link>
+                                <Link to = "/category/chat" className = {cx("link")}><li>- chat</li></Link>
                             </ul>
                         </div>
                     </div>

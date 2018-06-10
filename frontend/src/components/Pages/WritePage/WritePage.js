@@ -2,9 +2,7 @@ import React, {Component} from "react";
 import WriteTemplate from "../../Templates/WriteTemplate/WriteTemplate.js";
 import Aside from "../../Organisms/Aside/Aside.js";
 import WriteForm from "../../Organisms/Write/WriteForm/WriteForm.js";
-import ScreenMask from "../../Parts/ScreenMask/ScreenMask.js";
 import { tokenCheckRequest } from "../../actions/account";
-import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 class WritePage extends Component{

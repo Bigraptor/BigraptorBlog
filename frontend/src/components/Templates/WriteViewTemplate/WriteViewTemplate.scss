@@ -1,0 +1,27 @@
+body {
+    margin : 0;
+    box-sizing: border-box;
+}
+
+.screen-mask{
+    position : absolute;
+    top : 0;
+    left: 0;
+    right : 0;
+    bottom : 0;
+
+    &.responsive{
+        z-index : 2;
+    }
+}
+
+.wrapper{
+    display: flex;
+    
+    .header{
+        width : 25.1%;
+    }
+    .main{
+        width : 74.9%;
+    }
+}

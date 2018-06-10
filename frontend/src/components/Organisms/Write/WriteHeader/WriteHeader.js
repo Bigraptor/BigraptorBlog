@@ -28,9 +28,9 @@ class WriteHeader extends Component{
                 <div className = {cx("category-wrapper")}>
                     <select name="category" onChange = {this._change}>
                         <optgroup label="Tech">
-                            <option value="React">React</option>
-                            <option value="Nodejs">Node.js</option>
-                            <option value="Javascript">JavaScript</option>
+                            <option value="react">React</option>
+                            <option value="nodejs">Node.js</option>
+                            <option value="javascript">JavaScript</option>
                             <option value="jQuery">jQuery</option>
                         </optgroup>
                         <optgroup label="Dev">
