@@ -35,4 +35,11 @@ router.post("/load", (req, res) => {
     }
 );
 
+router.post("/exactpost", (req, res) => {
+    Post.find({no : req.body.no}, (err, post) => {
+        if(err) throw err;
+        res.json(post);
+    });
+});
+
 module.exports = router;

@@ -4,11 +4,11 @@ import Aside from "../../Organisms/Aside/Aside.js";
 import Content from "../../Organisms/WriteView/Content/Content.js";
 import ScreenMask from "../../Parts/ScreenMask/ScreenMask.js";
 
-const WriteViewPage = () => {
+const WriteViewPage = ( {match} ) => {
     return (
         <div>
             <WriteViewTemplate header = {<Aside />} screenmask = {<ScreenMask />}>
-                <Content />
+                <Content params = {match.params}/>
             </WriteViewTemplate>
         </div>
     );

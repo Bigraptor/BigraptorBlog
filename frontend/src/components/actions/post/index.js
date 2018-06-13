@@ -26,6 +26,16 @@ export function postLoadRequest(category){
     };
 };
 
+export function exactPostRequest(no){
+    return (dispatch) => {
+        return axios.post("/post/exactpost", {no}).then(
+            (response) => {
+                dispatch(exactPost(response.data));
+            }
+        );
+    };
+};
+
 export function postWrite(){
     return {
         type : types.POST_WRITE
@@ -50,3 +60,10 @@ export function postLoadFailed(){
         type : types.POST_LOAD_FAILED
     };
 };
+
+export function exactPost(post){
+    return {
+        type : types.EXACT_POST,
+        post
+    }
+}

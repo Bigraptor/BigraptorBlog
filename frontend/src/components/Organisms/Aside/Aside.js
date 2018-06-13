@@ -45,8 +45,9 @@ class Aside extends Component{
     };
 
     _logout(){
-        this.props.logoutrequest();
-        window.location.reload();
+        this.props.logoutrequest().then( () => {
+            window.location.reload();
+        });
     };
 
     render(){

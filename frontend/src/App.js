@@ -8,9 +8,9 @@ class App extends Component {
   render() {
     return (
         <div className = "App">
-          <Route exact path = "/" component = {HomePage} />
+          <Route exact path = "/" component = { HomePage } />
           <Switch>
-            <Route path = "/category/:category" component = {HomePage} />
+            <Route path = "/category/:category" component = { props => <HomePage {...props}/> } />
             <Route path = "/write" component = {WritePage} />
             <Route path = "/:no" component = {WriteViewPage}/>
           </Switch>

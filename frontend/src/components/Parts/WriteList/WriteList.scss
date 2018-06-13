@@ -6,7 +6,6 @@
     .title{
         font-size: 1.4rem;
         font-weight : 600;
-        color : rgb(88, 86, 86);
         cursor: pointer;
     }
     .content{
@@ -31,4 +30,9 @@
             font-size : 0.9rem;
         }
     }
+}
+
+.link{
+    text-decoration: none;
+    color : rgb(88, 86, 86);
 }

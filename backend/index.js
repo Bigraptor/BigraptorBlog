@@ -7,6 +7,7 @@ const config = require("./config.js");
 const account = require("./routes/account");
 const cookieParser = require("cookie-parser");
 const post = require("./routes/Post");
+const autoincrement = require("mongoose-auto-increment");
 
 app.use(cookieParser());
 app.use(bodyparser.json());

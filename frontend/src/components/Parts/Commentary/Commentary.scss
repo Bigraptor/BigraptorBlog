@@ -1,0 +1,36 @@
+.wrapper{
+    display: flex;
+    border-bottom : 1px solid #EFEFEF;
+    .image{
+        width: 10%;
+        height: 5rem;
+        box-sizing: border-box;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+        div{
+            border: 1px solid red;
+            border-radius: 100%;
+            height: 100%;
+            width : 100%;
+        }
+    }
+    .section{
+        width : 90%;
+        margin-left : 1rem;
+        .section-header{
+            span{
+                margin-left : 2rem;
+                font-size : 0.8rem;
+                color : #5C5C5C;
+            }
+        }
+        .section-content{
+            color : #5C5C5C;
+            font-size: 0.9rem;
+            margin-top : 0.4rem;
+            margin-bottom : 1rem;
+        }
+    }
+}

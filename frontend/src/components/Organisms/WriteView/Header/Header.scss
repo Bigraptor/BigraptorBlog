@@ -1,0 +1,25 @@
+.wrapper{
+    margin-top : 5rem;
+    border-bottom : 1px solid #EFEFEF;
+    .category{
+        font-size : 1.1rem;
+        color : #A1D7FF;
+        font-weight : 600;
+        margin-bottom : 0.8rem;
+    }
+    .title{
+        margin-top : 0.4rem;
+        font-size : 1.9rem;
+        margin-bottom : 0.8rem;
+    }
+    .footer{
+        margin-top:0.8rem;
+        margin-bottom : 1rem;
+        color : #A7A7A7;
+        font-size: 0.9rem;
+        span{
+            box-sizing: border-box;
+            padding-right : 1.5rem;
+        }
+    }
+}

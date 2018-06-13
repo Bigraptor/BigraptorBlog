@@ -3,7 +3,6 @@ import styles from "./Content.scss";
 import classNames from "classnames/bind";
 import WriteList from "../../Parts/WriteList/WriteList.js";
 import { postLoadRequest } from "../../actions/post";
-import {} from "react-router-dom";
 import { connect } from "react-redux";
 
 const cx = classNames.bind(styles);
@@ -21,8 +20,8 @@ class Content extends Component{
 
     render(){
 
-        const map = this.props.postload.post.map( (a, i) => {
-            return <WriteList key = {a._id} category = {a.category} title = {a.title} content = {a.content} created = {a.created} />
+        const map = this.props.postload.post.map( (a) => {
+            return <WriteList key = {a.no} category = {a.category} title = {a.title} content = {a.content} created = {a.created} no = {a.no} />
         });
 
         return (

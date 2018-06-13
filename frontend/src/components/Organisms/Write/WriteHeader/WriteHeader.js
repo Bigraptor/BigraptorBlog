@@ -34,10 +34,10 @@ class WriteHeader extends Component{
                             <option value="jQuery">jQuery</option>
                         </optgroup>
                         <optgroup label="Dev">
-                            <option value="Diary">diary</option>
+                            <option value="diary">diary</option>
                         </optgroup>
                         <optgroup label="Life">
-                            <option value="Chat">chat</option>
+                            <option value="chat">chat</option>
                         </optgroup>
                     </select>
                 </div>

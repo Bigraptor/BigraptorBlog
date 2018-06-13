@@ -42,6 +42,13 @@ export default function post(state = initialState, action){
                 }
             });
 
+        case(types.EXACT_POST) :
+            return update(state, {
+                load : {
+                    post : {$set: action.post}
+                }
+            })
+
         default :
             return state;
     };
