@@ -106,7 +106,6 @@ router.post("/login", (req, res) => {
                     account,
                     token
                 });
-            
             }
         }
     })

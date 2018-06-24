@@ -10,7 +10,7 @@ class WriteHeader extends Component{
         super(props);
         this.state= {
             title : "",
-            category : "React"
+            category : "react"
         };
 
         this._change = this._change.bind(this);

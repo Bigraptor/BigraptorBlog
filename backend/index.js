@@ -15,6 +15,7 @@ app.use(bodyparser.urlencoded({extended : true}));
 app.use(morgan("dev"));
 app.set('jwt-secret', config.secret)
 
+app.use(express.static("images"));
 app.use("/account", account);
 app.use("/post", post);
 

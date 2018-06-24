@@ -18,7 +18,7 @@
     &.responsive{
         transition : all 0.3s ease-in;
         width : 30%;
-        z-index: 2;
+        z-index: 3;
 
         @include media("<1200px"){
             flex-direction: column;

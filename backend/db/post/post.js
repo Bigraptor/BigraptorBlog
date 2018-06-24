@@ -7,6 +7,11 @@ const Post = new Schema({
     category : String,
     title : String,
     content : String,
+    comment : [{
+        author : String,
+        content : String,
+        created : { type : Date, default : Date.now }
+    }],
     created : {type : Date, default : Date.now}
 });
 

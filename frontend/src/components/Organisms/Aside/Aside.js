@@ -2,8 +2,6 @@ import React, {Component} from "react";
 import styles from "./Aside.scss";
 import classNames from "classnames/bind";
 import Logo from "../../Parts/Logo/Logo.js";
-import profileLogo from "../../../img/raptor.png";
-import profileLogo2 from "../../../img/user.png";
 import { showLoginModal } from "../../actions/showLogin";
 import { tokenCheckRequest, logoutRequest } from "../../actions/account";
 import { Link } from "react-router-dom";
@@ -61,7 +59,7 @@ class Aside extends Component{
         const dologin = (
             <div>
                 <div className = {cx("profile-image")}>
-                    <img src = {this.props.user.admin ? profileLogo : profileLogo2} alt = "raptor-logo"/>
+                    <img src = {this.props.user.admin ? "/raptor.png" : "/user.png"} alt = "raptor-logo"/>
                 </div>
                 <div>
                     {this.props.user.nickname}님

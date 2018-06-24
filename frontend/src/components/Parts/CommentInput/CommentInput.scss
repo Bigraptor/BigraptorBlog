@@ -1,6 +1,14 @@
 .wrapper{
     background-color: #FAFAFA;
+    padding : 1px;
+    margin-top : 1rem;
 
+    .nickname{
+        margin-top : 1rem;
+        margin-bottom : 2rem;
+        margin-left: 2rem;
+        font-size : 1.1rem;
+    }
     textarea{
         resize : none;
         margin-left: 2rem;
@@ -30,5 +38,10 @@
                 color : rgb(235, 232, 232);
             }
         }
+    }
+
+    .notlogin{
+        margin : 5rem;
+        text-align: center;
     }
 }

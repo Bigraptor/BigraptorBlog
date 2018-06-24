@@ -42,4 +42,34 @@ router.post("/exactpost", (req, res) => {
     });
 });
 
+router.post("/writecomment/:no", (req, res) => {
+    Post.findOne({no : req.params.no}, (err, post) => {
+        
+        if(err) throw err;
+        console.log(post.comment)
+        
+        post.comment.push({
+            author : req.body.nickname,
+            content : req.body.content
+        });
+
+        post.save((err) => {
+            if(err) throw err;
+            res.json({
+                success : true
+            });
+        });
+    });
+});
+
+router.get("/loadcomment/:no", (req, res) => {
+    Post.findOne({no : req.params.no}, (err, comment) => {
+        if(err) throw err;
+
+        res.json({
+            comment
+        });
+    });
+});
+
 module.exports = router;
