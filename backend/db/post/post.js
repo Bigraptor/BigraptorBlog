@@ -10,7 +10,13 @@ const Post = new Schema({
     comment : [{
         author : String,
         content : String,
-        created : { type : Date, default : Date.now }
+        created : { type : Date, default : Date.now },
+        reply : [{
+            defaultwriter : String, ///// 답글 대상자
+            author : String,
+            content: String,
+            created : { type : Date, default : Date.now}
+        }]
     }],
     created : {type : Date, default : Date.now}
 });

@@ -1,0 +1,102 @@
+@import "~include-media/dist/include-media";
+
+.wrapper{
+    margin-top : 1rem;
+    border-bottom : 1px solid #EFEFEF;
+
+    .inner{
+        margin-left : 5rem;
+        display : flex;
+
+        .image{
+            width: 10%;
+            height: 5rem;
+            box-sizing: border-box;
+            padding-top: 0.3rem;
+            padding-bottom: 0.3rem;
+            padding-left: 0.3rem;
+            padding-right: 0.3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            @include media("<1200px"){
+                width : 4.3rem;
+                height: 4.3rem;
+            }
+            div{
+                border-radius: 100%;
+                height: 3.8rem;
+                width : 3.8rem;
+                text-align: center;
+                background-color : #EEEEEE;
+                img{
+                    width : 90%;
+                    height : 90%;
+                }
+            }
+        }
+        .section{
+            width : 90%;
+            margin-left : 1rem;
+            .section-header{
+                display : flex;
+    
+                .id{
+                    width : 8rem;
+                    &.owner{
+                        color : rgb(228, 133, 223);
+                        animation-duration: 1s; 
+                        animation-name: rainbowLink; 
+                        animation-iteration-count: infinite;
+                        @keyframes rainbowLink {     
+                         0% { color: #ff2a2a; }
+                         15% { color: #ff7a2a; }
+                         30% { color: #ffc52a; }
+                         45% { color: #43ff2a; }
+                         60% { color: #2a89ff; }
+                         75% { color: #202082; }
+                         90% { color: #6b2aff; } 
+                         100% { color: #e82aff; }
+                        }
+                    }
+                    img{
+                        margin-left: 0.2rem;
+                    }
+                }
+                span{
+                    font-size : 0.8rem;
+                    color : #5C5C5C;
+                }
+                .submenu{
+                    font-size : 0.8rem;
+                    margin-left : 3rem;
+                    display: none;
+                    span{
+                        margin-left : 0.2rem;
+                        margin-right : 0.2rem;
+                        cursor : pointer;
+                    }
+                    &.mouseover{
+                        display : block;
+                    }
+                }
+            }
+            .section-content{
+                color : #5C5C5C;
+                font-size: 0.9rem;
+                margin-top : 0.7rem;
+                margin-bottom : 1rem;
+                div{
+                    margin-bottom : 1rem;
+                    font-weight : 600;
+                    i{
+                        margin-top : 0.4rem;
+                        margin-right : 0.8rem;
+                        color : rgb(117, 170, 231);
+                    }
+                }
+            }
+        }
+    }
+}
