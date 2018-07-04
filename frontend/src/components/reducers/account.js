@@ -103,6 +103,6 @@ export default function account(state = initialState, action){
 
         default:
             return state;
-    };
+    }
 };
 

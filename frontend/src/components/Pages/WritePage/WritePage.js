@@ -20,7 +20,7 @@ class WritePage extends Component{
         return (
             <div>
                 <WriteTemplate header = {<Aside />} >
-                    <WriteForm />
+                    <WriteForm  params = {this.props.match.params} />
                 </WriteTemplate>
             </div>
         );

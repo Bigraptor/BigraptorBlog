@@ -1,5 +1,31 @@
+@import "~include-media/dist/include-media";
+
 .wrapper{
     color : #5C5C5C;
     margin-top : 3rem;
     margin-bottom : 5rem;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.submenu{
+    text-align: right;
+    box-sizing: border-box;
+    span{
+        margin-right : 1rem;
+        padding-top : 0.5rem;
+        padding-bottom : 0.5rem;
+        padding-left : 0.8rem;
+        padding-right: 0.8rem;
+        box-sizing: border-box;
+        cursor : pointer;
+        user-select: none;
+        background-color : rgb(216, 208, 208);
+        transition : all 0.2s ease-in-out;
+        &:hover{
+            color : white;
+        }
+    }
+    .link{
+        color : black;
+    }
 }

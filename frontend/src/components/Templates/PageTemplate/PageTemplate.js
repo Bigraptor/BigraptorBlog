@@ -8,13 +8,13 @@ const cx = classNames.bind(styles);
 class PageTemplate extends Component{
     render(){
         return (
-            <div>
+            <div className = {cx("wrapper")}>
                 <div className = {cx("screen-mask", {
                     responsive : this.props.showloginmodal
                 })}>
                     {this.props.showloginmodal ? this.props.screenmask : ""}
                 </div>
-                <div className = {cx("wrapper")}>
+                <div className = {cx("inner-wrapper")}>
                     <header className = {cx("header")}>
                         {this.props.header}
                     </header>

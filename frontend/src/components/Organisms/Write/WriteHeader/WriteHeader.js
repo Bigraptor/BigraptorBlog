@@ -22,7 +22,28 @@ class WriteHeader extends Component{
         this.setState(a);
     }
 
+    componentDidMount(){
+        if(window.location.href.split('/')[4] === "modify"){
+            this.setState({
+                title : this.props.title
+            });
+        };
+    };
+
     render(){
+
+        const modify = (
+            <div onClick = {() => {this.props.modify(this.state.title)}}>
+                수정하기
+            </div>
+        );
+
+        const write = (
+            <div onClick = {()=>{this.props.create(this.state.title, this.state.category)}}>
+                작성하기
+            </div>
+        );
+
         return (
             <div className = {cx("wrapper")}>
                 <div className = {cx("category-wrapper")}>
@@ -45,8 +66,8 @@ class WriteHeader extends Component{
                     <input type = "text" name = "title" placeholder = "제목을 입력하세요" value = {this.state.title} onChange = {this._change}/>
                 </div>
                 <div className = {cx("btn-wrapper")}>
-                    <span onClick = {()=>{this.props.create(this.state.title, this.state.category)}}>
-                        작성하기
+                    <span>
+                        {window.location.href.split('/')[4] === "modify" ? modify : write}
                     </span>
                 </div>
             </div>

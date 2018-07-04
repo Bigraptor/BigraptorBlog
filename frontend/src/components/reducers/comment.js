@@ -49,5 +49,5 @@ export default function comment(state = initialState, action){
 
         default :
             return state;
-    };
+    }
 };

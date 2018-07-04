@@ -1,0 +1,44 @@
+@import "~include-media/dist/include-media";
+
+.pagination{
+    list-style: none;
+    box-sizing: border-box;
+    display : flex;
+
+    .first{
+        a{
+            color : black;
+        }
+        &.disablefirst{
+            display :none;
+        }
+    }
+    .last{
+        a{
+            color : black;
+        }
+        &.disablelast{
+            display: none;
+        }
+    }
+    .page{
+        margin-left: 0.2rem;
+        margin-right : 0.2rem;
+        padding-left: 0.2rem;
+        padding-right : 0.2rem;
+        transition : all 0.1s ease-in-out;
+        a{
+            color : black;
+        }
+        &.respons{
+            font-weight : 700;
+        }
+        // &:hover{
+        //     border: 0.5px solid rgb(133, 180, 241);
+        // }
+    }
+    
+    @include media("<1000px"){
+        justify-content : center;
+    }
+}

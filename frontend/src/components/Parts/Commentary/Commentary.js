@@ -87,7 +87,7 @@ class Commentary extends Component{
                 <div className = {cx("wrapper")} onMouseOver = {this._mouseover} onMouseOut = {this._mouseout}>
                     <div className = {cx("image")}>
                         <div>
-                            <img src = {this.props.author === "Bigraptor" ? "/raptor.png" : "/user.png"} alter = "프로필 이미지"/>
+                            <img src = {this.props.author === "Bigraptor" ? "/raptor.png" : "/user.png"} alt = "profile"/>
                         </div>
                     </div>
                     <div className = {cx("section")}>
@@ -96,15 +96,15 @@ class Commentary extends Component{
                                 owner : this.props.author === "Bigraptor"
                             })}>
                                 {this.props.author}
-                                <img src = {this.props.author === "Bigraptor" ? "/level/level_19.gif" : ""} />
+                                {this.props.author === "Bigraptor" && <img src =  "/level/level_11.gif"  alt = "profile_level" />}
                             </div>
                             <span>{date}</span>
                             <div className = {cx("submenu", {
                                 mouseover : this.state.showsubmenu
                             })}>
                                 {this.props.tokenstatus.isLoggedin ? <span onClick = {this._reply}>답글</span> : ""}
-                                {this.props.author == this.props.loginstatus.nickname ? <span onClick = {this._modify}>수정</span> : ""}
-                                {this.props.author == this.props.loginstatus.nickname || this.props.loginstatus.admin ? <span onClick = {this._delete}>삭제</span> : ""}
+                                {this.props.author === this.props.loginstatus.nickname ? <span onClick = {this._modify}>수정</span> : ""}
+                                {this.props.author === this.props.loginstatus.nickname || this.props.loginstatus.admin ? <span onClick = {this._delete}>삭제</span> : ""}
                             </div>
                         </div>
                         <div className = {cx("section-content")}>

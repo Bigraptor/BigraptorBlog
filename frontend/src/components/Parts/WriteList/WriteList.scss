@@ -1,18 +1,36 @@
+@import "~include-media/dist/include-media";
+
 .wrapper{
     border-bottom : 1px solid #EFEFEF;
     margin-bottom : 1.5rem;
     margin-top : 1.5rem;
     position: relative;
+    display:flex;
+    justify-content: space-between;
+    box-sizing : border-box;
+
     .title{
+        width : 37rem;
         font-size: 1.4rem;
         font-weight : 600;
         cursor: pointer;
+    
+        @include media("<1000px"){
+            box-sizing: border-box;
+            width : 100%;
+        }
     }
     .content{
         color : #5C5C5C;
+        width : 37rem;
         margin-top : 0.6rem;
         font-size: 0.8rem;
         cursor: pointer;
+    
+        @include media("<1000px"){
+            box-sizing: border-box;
+            width : 100%;
+        }
     }
     .footer{
         margin-top : 1rem;
@@ -30,9 +48,32 @@
             font-size : 0.9rem;
         }
     }
+    .thumbnail{
+        width : 150px;
+        height : 120px;
+        margin-bottom : 0.5rem;
+        display : flex;
+        align-items: center;
+        img{
+            height : 80%;
+        }
+        &.disable{
+            display: none;
+        }
+        @include media("<1000px"){
+            margin : 0 auto;
+        }
+    }
+    @include media("<1000px"){
+        display : block;
+    }
 }
 
 .link{
     text-decoration: none;
     color : rgb(88, 86, 86);
+    &:hover{
+        text-decoration: none;
+        color : rgb(88, 86, 86);
+    }
 }

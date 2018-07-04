@@ -8,16 +8,21 @@ const account = require("./routes/account");
 const cookieParser = require("cookie-parser");
 const post = require("./routes/Post");
 const autoincrement = require("mongoose-auto-increment");
+const path = require("path");
 
 app.use(cookieParser());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended : true}));
 app.use(morgan("dev"));
-app.set('jwt-secret', config.secret)
-
+app.set('jwt-secret', config.secret);
 app.use(express.static("images"));
+
+app.use('/', express.static(path.join(__dirname, '../frontend/build')));
 app.use("/account", account);
 app.use("/post", post);
+app.get("/*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+});
 
 /////////////////////////////////////////////////////
 

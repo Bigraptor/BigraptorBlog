@@ -15,5 +15,5 @@ export default function menu(state = initialState, action){
 
         default :
             return state;
-    };
+    }
 };

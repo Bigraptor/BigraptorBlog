@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styles from "./CommentInput.scss";
 import classNames from "classnames/bind";
-import { commentRequest, comment, commentModifyLoadRequest, commentModifyRequest, commentReplyRequest, commentReplyModifyRequest, commentReplyModifyLoadRequest } from "../../actions/comment";
+import { commentRequest, commentModifyLoadRequest, commentModifyRequest, commentReplyRequest, commentReplyModifyRequest, commentReplyModifyLoadRequest } from "../../actions/comment";
 import { connect } from "react-redux";
 
 const cx = classNames.bind(styles);

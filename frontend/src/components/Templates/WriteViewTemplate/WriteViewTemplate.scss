@@ -33,6 +33,10 @@ body {
         width : 74.9%;
         height:100%;
         z-index: 2;
+
+        @include media("<1200px"){
+            width : 100%;
+        }
     }
 
     @include media("<1200px"){

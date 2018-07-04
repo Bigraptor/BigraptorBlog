@@ -7,12 +7,21 @@ const initialState = {
     },
     load : {
         status : "INIT",
-        post : []
+        posts : [],
+        exactpost : ""
+    },
+    page : {
+        totalpage: 0,
+        currentpage : 1
     }
 };
 
 export default function post(state = initialState, action){
     switch(action.type){
+
+        default :
+            return state;
+
         case(types.POST_WRITE) :
             return update(state, {
                 write : {
@@ -31,7 +40,7 @@ export default function post(state = initialState, action){
             return update(state, {
                 load : {
                     status : {$set: "SUCCESS"},
-                    post : {$set: action.load}
+                    posts : {$set: action.load}
                 }
             });
 
@@ -45,11 +54,65 @@ export default function post(state = initialState, action){
         case(types.EXACT_POST) :
             return update(state, {
                 load : {
-                    post : {$set: action.post}
+                    exactpost : {$set: action.post}
                 }
-            })
+            });
 
-        default :
-            return state;
-    };
+        case(types.POST_PAGINATION) :
+            return update(state, {
+                page : {
+                    totalpage : {$set: action.pagination}
+                }
+            });
+
+        case(types.POST_CURRENTPAGE) :
+            return update(state, {
+                page : {
+                    currentpage : {$set: action.page}
+                }
+            });
+
+        case(types.POST_NEXTPAGE):
+            return update(state, {
+                page : {
+                    currentpage : {$set: state.page.currentpage + 1}
+                }
+            });
+
+        case(types.POST_BRING):
+            return update(state, {
+                load : {
+                    status : {$set: "WAIT"}
+                }
+            });
+
+        case(types.POST_BRING_SUCCESS):
+            return update(state, {
+                load : {
+                    status : {$set: "SUCCESS"},
+                    posts : {$set: action.bring}
+                }
+            });
+
+        case(types.POST_BRING_FAILED):
+            return update(state, {
+                load : {
+                    status : {$set: "FAILED"}
+                }
+            });
+
+        case(types.POST_PREVIOUS) :
+            return update(state, {
+                page : {
+                    currentpage : {$set: state.page.currentpage-1}
+                }
+            });
+
+        case(types.POST_CATEGORY_PAGINATION) :
+            return update(state, {
+                page : {
+                    totalpage : {$set: action.pagination}
+                }
+            });
+    }
 };

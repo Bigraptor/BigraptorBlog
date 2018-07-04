@@ -19,5 +19,5 @@ export default function showlogin(state = initialState, action){
 
         default :
             return state;
-    };
+    }
 };

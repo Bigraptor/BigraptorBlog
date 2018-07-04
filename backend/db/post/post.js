@@ -18,7 +18,8 @@ const Post = new Schema({
             created : { type : Date, default : Date.now}
         }]
     }],
-    created : {type : Date, default : Date.now}
+    created : {type : Date, default : Date.now},
+    thumbnail : String
 });
 
 module.exports = mongoose.model("post", Post);
